@@ -309,3 +309,6 @@
       extra_opts:
         - "--strip-components=1"
         - "efm-langserver_v0.0.37_linux_amd64/efm-langserver"
+
+  # TODO: add configuration for Ubuntu MATE
+  # gsettings set org.gnome.desktop.interface clock-show-seconds false
