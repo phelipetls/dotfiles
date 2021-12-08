@@ -271,22 +271,12 @@
     become_flags: "--preserve-env=HOME"
     loop:
       - dmenu
-      - dwm
       - slock
       - st
       - tabbed
     shell:
       cmd: make clean install
       chdir: "./suckless/{{ item }}"
-
-  - name: Configure DWM X Session
-    become: true
-    tags:
-      - dwm
-      - gui
-    template:
-      src: templates/dwm.desktop.j2
-      dest: /usr/share/xsessions/dwm.desktop
 
   - name: Configure awesome X Session
     become: true
