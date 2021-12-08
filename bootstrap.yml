@@ -272,7 +272,6 @@
       - dmenu
       - slock
       - st
-      - tabbed
     shell:
       cmd: make clean install
       chdir: "./suckless/{{ item }}"
