@@ -85,7 +85,6 @@
         - lm-sensors
         - alsa-utils
         - sxhkd
-        - awesome
         - libimlib2-dev
       state: present
 
@@ -277,15 +276,6 @@
     shell:
       cmd: make clean install
       chdir: "./suckless/{{ item }}"
-
-  - name: Configure awesome X Session
-    become: true
-    tags:
-      - awesome
-      - gui
-    template:
-      src: templates/awesome.desktop.j2
-      dest: /usr/share/xsessions/awesome.desktop
 
   - name: Activate slock before sleep
     become: true
