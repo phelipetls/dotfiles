@@ -11,5 +11,4 @@ Wants=numlockx.service
 Wants=redshift.service
 Wants=suspend.service
 Wants=ssh-agent.service
-Wants=dunst.service
 Wants=sxhkd.service
