@@ -3,18 +3,6 @@
   hosts: default
 
   tasks:
-  - name: Add apt repositories
-    become: true
-    tags:
-      - deps
-      - gui
-      - apt
-    loop:
-      - "ppa:papirus/papirus"
-    apt_repository:
-      repo: "{{ item }}"
-      state: present
-
   - name: Install Visual Studio Code
     tags:
       - always
@@ -77,7 +65,6 @@
         - peek
         - scrcpy
         - tlp
-        - papirus-icon-theme
         - sxhkd
         - ubuntu-mate-desktop
         - libimlib2-dev
