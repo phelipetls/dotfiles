@@ -78,9 +78,6 @@
         - scrcpy
         - tlp
         - papirus-icon-theme
-        - acpi
-        - lm-sensors
-        - alsa-utils
         - sxhkd
         - ubuntu-mate-desktop
         - libimlib2-dev
