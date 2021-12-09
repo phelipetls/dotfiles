@@ -285,6 +285,10 @@
           - {key: switch-to-workspace-2, value: "'<Mod4>2'"}
           - {key: switch-to-workspace-3, value: "'<Mod4>3'"}
           - {key: switch-to-workspace-4, value: "'<Mod4>4'"}
+          - {key: switch-to-workspace-down, value: "'<Alt><Mod4>Down'"}
+          - {key: switch-to-workspace-left, value: "'<Alt><Mod4>Left'"}
+          - {key: switch-to-workspace-right, value: "'<Alt><Mod4>Right'"}
+          - {key: switch-to-workspace-up, value: "'<Alt><Mod4>Up'"}
         community.general.dconf:
           key: "/org/mate/marco/global-keybindings/{{ item.key }}"
           value: "{{ item.value }}"
