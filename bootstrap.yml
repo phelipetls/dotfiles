@@ -283,6 +283,37 @@
           value: "{{ item.value }}"
           state: present
 
+      - name: Restore mate-panel objects
+        loop:
+          - {key: object-1/applet-iid, value: "'BriskMenuFactory::BriskMenu'"}
+          - {key: object-1/object-type, value: "'applet'"}
+          - {key: object-1/panel-right-stick, value: "false"}
+          - {key: object-1/position, value: "0"}
+          - {key: object-1/toplevel-id, value: "'toplevel-0'"}
+          - {key: object-2/applet-iid, value: "'WnckletFactory::WindowListApplet'"}
+          - {key: object-2/object-type, value: "'applet'"}
+          - {key: object-2/panel-right-stick, value: "false"}
+          - {key: object-2/position, value: "80"}
+          - {key: object-2/toplevel-id, value: "'toplevel-0'"}
+          - {key: object-3/applet-iid, value: "'WnckletFactory::WorkspaceSwitcherApplet'"}
+          - {key: object-3/object-type, value: "'applet'"}
+          - {key: object-3/panel-right-stick, value: "false"}
+          - {key: object-3/position, value: "963"}
+          - {key: object-3/toplevel-id, value: "'toplevel-0'"}
+          - {key: object-3/prefs/display-all-workspaces, value: "true"}
+          - {key: object-3/prefs/display-workspace-names, value: "false"}
+          - {key: object-3/prefs/num-rows, value: "1"}
+          - {key: object-3/prefs/wrap-workspaces, value: "false"}
+          - {key: object-4/applet-iid, value: "'IndicatorAppletCompleteFactory::IndicatorAppletComplete'"}
+          - {key: object-4/object-type, value: "'applet'"}
+          - {key: object-4/panel-right-stick, value: "true"}
+          - {key: object-4/position, value: "230"}
+          - {key: object-4/toplevel-id, value: "'toplevel-0'"}
+        community.general.dconf:
+          key: "/org/mate/panel/toplevels/toplevel-0/objects/{{ item.key }}"
+          value: "{{ item.value }}"
+          state: present
+
       - name: Restore global keybindings
         loop:
           - {key: run-command-terminal, value: "'<Shift><Mod4>Return'"}
@@ -290,15 +321,16 @@
           - {key: switch-to-workspace-2, value: "'<Mod4>2'"}
           - {key: switch-to-workspace-3, value: "'<Mod4>3'"}
           - {key: switch-to-workspace-4, value: "'<Mod4>4'"}
-          - {key: switch-to-workspace-down, value: "'<Alt><Mod4>Down'"}
-          - {key: switch-to-workspace-left, value: "'<Alt><Mod4>Left'"}
-          - {key: switch-to-workspace-right, value: "'<Alt><Mod4>Right'"}
-          - {key: switch-to-workspace-up, value: "'<Alt><Mod4>Up'"}
+          - {key: switch-to-workspace-down, value: "'<Primary><Mod4>Down'"}
+          - {key: switch-to-workspace-left, value: "'<Primary><Mod4>Left'"}
+          - {key: switch-to-workspace-right, value: "'<Primary><Mod4>Right'"}
+          - {key: switch-to-workspace-up, value: "'<Primary><Mod4>Up'"}
+          - {key: switch-to-workspace-prev, value: "'<Mod4>Tab'"}
         community.general.dconf:
           key: "/org/mate/marco/global-keybindings/{{ item.key }}"
           value: "{{ item.value }}"
 
-      - name: Restore window keybdingins
+      - name: Restore window keybindings
         loop:
           - {key: move-to-workspace-1, value: "'<Shift><Mod4>exclam'"}
           - {key: move-to-workspace-2, value: "'<Shift><Mod4>at'"}
