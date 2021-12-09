@@ -261,6 +261,11 @@
           value: "{{ item.value }}"
           state: present
 
+      - name: Restore mate-panel general configuration
+        community.general.dconf:
+          key: "/org/mate/panel/general/default-layout"
+          value: "'familiar'"
+
       - name: Restore mate-panel configuration
         loop:
           - {key: auto-hide, value: "false"}
