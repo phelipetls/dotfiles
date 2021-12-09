@@ -1,9 +1,0 @@
-[Unit]
-Description=i3
-PartOf=graphical-session.target
-
-[Service]
-ExecStart=i3
-ExecStopPost=systemctl --user stop graphical-session.target
-Restart=on-failure
-
