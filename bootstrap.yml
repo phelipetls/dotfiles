@@ -85,6 +85,7 @@
         - lm-sensors
         - alsa-utils
         - sxhkd
+        - ubuntu-mate-desktop
         - libimlib2-dev
       state: present
 
