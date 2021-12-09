@@ -233,5 +233,111 @@
       state: started
       scope: user
 
-  # TODO: add configuration for Ubuntu MATE
-  # gsettings set org.gnome.desktop.interface clock-show-seconds false
+  - name: Configure Ubuntu MATE
+    tags:
+      - mate
+      - gui
+    block:
+      # See this issue
+      # https://ubuntu-mate.community/t/menu-icons-not-found-on-fresh-new-install-20-04/21579/32.
+      # Remove once it's resolved
+      - name: Fix broken icons in brazilian portuguese locale
+        become: true
+        shell: |
+          sed -i "/Icon\[/d" /usr/share/applications/*.desktop
+          sed -i "/Icon\[/d" /usr/share/mate/desktop-directories/*.directory
+          update-desktop-database
+
+      - name: Restore general Marco Window Manager configuration
+        loop:
+          - {key: action-double-click-titlebar, value: "'toggle_maximize'"}
+          - {key: allow-tiling, value: "false"}
+          - {key: auto-raise-delay, value: 500}
+          - {key: button-layout, value: "'close,minimize,maximize:'"}
+          - {key: num-workspaces, value: 4}
+          - {key: theme, value: "'Ambiant-MATE'"}
+        community.general.dconf:
+          key: "/org/mate/marco/general/{{ item.key }}"
+          value: "{{ item.value }}"
+          state: present
+
+      - name: Restore mate-panel configuration
+        loop:
+          - {key: auto-hide, value: "false"}
+          - {key: expand, value: "true"}
+          - {key: monitor, value: 0}
+          - {key: orientation, value: "'bottom'"}
+          - {key: screen, value: 0}
+          - {key: x, value: 0}
+          - {key: x-centered, value: "false"}
+          - {key: x-right, value: -1}
+          - {key: y, value: 744}
+          - {key: y-bottom, value: 0}
+        community.general.dconf:
+          key: "/org/mate/panel/toplevels/toplevel-0/{{ item.key }}"
+          value: "{{ item.value }}"
+          state: present
+
+      - name: Restore global keybindings
+        loop:
+          - {key: run-command-terminal, value: "'<Shift><Mod4>Return'"}
+          - {key: switch-to-workspace-1, value: "'<Mod4>1'"}
+          - {key: switch-to-workspace-2, value: "'<Mod4>2'"}
+          - {key: switch-to-workspace-3, value: "'<Mod4>3'"}
+          - {key: switch-to-workspace-4, value: "'<Mod4>4'"}
+        community.general.dconf:
+          key: "/org/mate/marco/global-keybindings/{{ item.key }}"
+          value: "{{ item.value }}"
+
+      - name: Restore window keybdingins
+        loop:
+          - {key: move-to-workspace-1, value: "'<Shift><Mod4>exclam'"}
+          - {key: move-to-workspace-2, value: "'<Shift><Mod4>at'"}
+          - {key: move-to-workspace-3, value: "'<Shift><Mod4>numbersign'"}
+          - {key: move-to-workspace-4, value: "'<Shift><Mod4>dollar'"}
+        community.general.dconf:
+          key: "/org/mate/marco/window-keybindings/{{ item.key }}"
+          value: "{{ item.value }}"
+
+      - name: Restore keybinding to open browser
+        community.general.dconf:
+          key: /org/mate/settings-daemon/plugins/media-keys/www
+          value: "'<Mod4>w'"
+
+      - name: Do not show clock seconds
+        command: gsettings set org.gnome.desktop.interface clock-show-seconds false
+
+  - name: Use Flameshot as Print Screen program in Ubuntu MATE
+    tags:
+      - mate
+      - flameshot
+      - gui
+    block:
+      - name: Remove default Print screen binding
+        community.general.dconf:
+          key: /org/mate/marco/global-keybindings/run-command-screenshot
+          value: "'disabled'"
+
+      - name: Configure custom keybinding for Print
+        loop:
+          - key: binding
+            value: "'Print'"
+          - key: name
+            value: "'Flameshot Fullscreen'"
+          - key: action
+            value: "'/usr/bin/flameshot full --clipboard --path $HOME/Imagens/screenshots'"
+        community.general.dconf:
+          key: "/org/mate/desktop/keybindings/custom0/{{ item.key }}"
+          value: "{{ item.value }}"
+
+      - name: Configure custom keybinding for Ctrl+Print
+        loop:
+          - key: binding
+            value: "'<Primary>Print'"
+          - key: name
+            value: "'Flameshot GUI'"
+          - key: action
+            value: "'/usr/bin/flameshot gui --path $HOME/Imagens/screenshots'"
+        community.general.dconf:
+          key: "/org/mate/desktop/keybindings/custom1/{{ item.key }}"
+          value: "{{ item.value }}"
