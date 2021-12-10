@@ -373,6 +373,9 @@
           key: "/org/mate/marco/window-keybindings/{{ item.key }}"
           value: "{{ item.value }}"
 
+      - name: Use st as default terminal application
+        command: gsettings set org.mate.applications-terminal exec st
+
       - name: Restore keybinding to open browser
         community.general.dconf:
           key: /org/mate/settings-daemon/plugins/media-keys/www
