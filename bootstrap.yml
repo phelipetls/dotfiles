@@ -178,6 +178,14 @@
       - pywal
     command: wal --theme base16-oceanicnext -o .config/wal/done.sh
 
+  - name: Ensure $HOME/.local/share/fonts exists
+    tags:
+      - fonts
+      - deps
+    file:
+      path: "{{ ansible_env.HOME }}/.local/share/fonts"
+      state: directory
+
   - name: Install Sauce Code Pro
     tags:
       - fonts
