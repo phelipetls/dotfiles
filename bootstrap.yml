@@ -24,7 +24,6 @@
         - git
         - tig
         - tmux
-        - fzf
         - stow
         - mutt
         - w3m
@@ -110,6 +109,24 @@
         - prettier
         - diff-so-fancy
         - npm-merge-driver
+
+  - name: Install fzf
+    tags:
+      - deps
+      - fzf
+    vars:
+      clone_path: "{{ ansible_env.HOME }}/src/fzf"
+    block:
+      - name: (fzf) Clone fzf repository
+        git:
+          repo: https://github.com/junegunn/fzf
+          dest: "{{ clone_path }}"
+          clone: true
+
+      - name: (fzf) Run install script
+        command: "./install"
+        args:
+          chdir: "{{ clone_path }}"
 
   - name: Build neovim from source
     become: true
