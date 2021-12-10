@@ -215,6 +215,7 @@
     tags:
       - fonts
     command: fc-cache -f
+    changed_when: false
 
   - name: Build suckless tools
     tags:
