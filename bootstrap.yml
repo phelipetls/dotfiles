@@ -65,6 +65,9 @@
         - peek
         - scrcpy
         - tlp
+        - libx11-dev
+        - libxext-dev
+        - libxres-dev
         - sxhkd
         - ubuntu-mate-desktop
         - libimlib2-dev
