@@ -291,9 +291,13 @@
           state: present
 
       - name: Restore mate-panel general configuration
+        loop:
+          - {key: default-layout, value: "'familiar'"}
+          - {key: object-id-list, value: ['object-1', 'object-2', 'object-4', 'object-3']}
+          - {key: toplevel-id-list, value: ['toplevel-0']}
         community.general.dconf:
-          key: "/org/mate/panel/general/default-layout"
-          value: "'familiar'"
+          key: "/org/mate/panel/general/{{ item.key }}"
+          value: "{{ item.value }}"
 
       - name: Restore mate-panel configuration
         loop:
