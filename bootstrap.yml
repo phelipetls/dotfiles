@@ -128,6 +128,17 @@
         args:
           chdir: "{{ clone_path }}"
 
+  - name: Install alacritty
+    tags:
+      - always
+    include_role:
+      name: islander.alacritty
+      apply:
+        become: true
+        tags:
+          - deps
+          - alacritty
+
   - name: Build neovim from source
     become: true
     tags:
