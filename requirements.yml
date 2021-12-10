@@ -6,5 +6,3 @@ roles:
   - name: gantsign.visual-studio-code
 
   - name: geerlingguy.nodejs
-
-  - name: islander.alacritty
