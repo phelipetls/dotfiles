@@ -256,7 +256,6 @@
       - ssh-agent
       - offlineimap
       - numlockx
-      - sxhkd
     systemd:
       name: "{{ item }}"
       state: started
