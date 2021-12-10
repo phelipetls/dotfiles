@@ -164,7 +164,7 @@
       - stow
     block:
       - name: (Stow) Prevent conflicts
-        command: "rm {{ ansible.env.HOME }}/.bashrc"
+        command: "rm {{ ansible_env.HOME }}/.bashrc"
         args:
           chdir: "{{ ansible_env.HOME }}"
 
