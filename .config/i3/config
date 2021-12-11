@@ -59,11 +59,11 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-# split in horizontal orientation (use <c-b> + % like in tmux)
-bindsym $mod+Shift+percent split h
+# split in horizontal orientation
+bindsym $mod+b split h
 
-# split in vertical orientation (use <c-b> + " like in tmux)
-bindsym $mod+Shift+dead_tilde split v
+# split in vertical orientation
+bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
