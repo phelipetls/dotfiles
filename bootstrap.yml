@@ -374,6 +374,9 @@
       - name: Do not show clock seconds
         command: gsettings set org.gnome.desktop.interface clock-show-seconds false
 
+      - name: Do not reduce screen brightness while idle
+        command: gsettings set org.mate.power-manager idle-dim-battery false
+
   - name: Use Flameshot as Print Screen program in Ubuntu MATE
     tags:
       - mate
