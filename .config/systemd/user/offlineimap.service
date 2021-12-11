@@ -2,5 +2,8 @@
 Description=Offlineimap
 PartOf=graphical-session.target
 
+[Install]
+WantedBy=graphical-session.target
+
 [Service]
 ExecStart=offlineimap

@@ -1,6 +1,9 @@
 [Unit]
 Description=SSH key agent
 
+[Install]
+WantedBy=graphical-session.target
+
 [Service]
 Type=simple
 Environment=SSH_AUTH_SOCK=%t/ssh-agent.socket

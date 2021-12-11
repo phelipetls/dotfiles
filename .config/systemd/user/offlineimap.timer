@@ -2,5 +2,8 @@
 Description=Sync offlineimap every hour
 PartOf=graphical-session.target
 
+[Install]
+WantedBy=graphical-session.target
+
 [Timer]
 OnCalendar=*-*-* *:00:00
