@@ -17,6 +17,7 @@
 
 static char *argv0;
 #include "arg.h"
+#include "icon.h"
 #include "st.h"
 #include "win.h"
 
@@ -92,7 +93,7 @@ typedef struct {
 	Window win;
 	Drawable buf;
 	GlyphFontSpec *specbuf; /* font spec buffer used for rendering */
-	Atom xembed, wmdeletewin, netwmname, netwmpid;
+	Atom xembed, wmdeletewin, netwmname, netwmpid, netwmicon;
 	XIM xim;
 	XIC xic;
 	Draw draw;
@@ -1142,6 +1143,10 @@ xinit(int cols, int rows)
 	xw.wmdeletewin = XInternAtom(xw.dpy, "WM_DELETE_WINDOW", False);
 	xw.netwmname = XInternAtom(xw.dpy, "_NET_WM_NAME", False);
 	XSetWMProtocols(xw.dpy, xw.win, &xw.wmdeletewin, 1);
+
+	xw.netwmicon = XInternAtom(xw.dpy, "_NET_WM_ICON", False);
+	XChangeProperty(xw.dpy, xw.win, xw.netwmicon, XA_CARDINAL, 32,
+			PropModeReplace, (uchar *)&icon, LEN(icon));
 
 	xw.netwmpid = XInternAtom(xw.dpy, "_NET_WM_PID", False);
 	XChangeProperty(xw.dpy, xw.win, xw.netwmpid, XA_CARDINAL, 32,
