@@ -9,3 +9,5 @@ Type=Application
 Icon=utilities-terminal
 Categories=System;TerminalEmulator;
 Keywords=shell;prompt;command;commandline;cmd;
+StartupNotify=true
+StartupWMClass=st-256color
