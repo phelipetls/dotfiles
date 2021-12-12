@@ -6,7 +6,6 @@
   - name: Install Visual Studio Code
     tags:
       - always
-      - deps
       - gui
     include_role:
       name: gantsign.visual-studio-code
@@ -17,7 +16,6 @@
   - name: Install apt packages
     become: true
     tags:
-      - deps
       - apt
     apt:
       name:
@@ -40,7 +38,6 @@
   - name: Install deb packages
     become: true
     tags:
-      - deps
       - apt
     loop:
       - https://github.com/gohugoio/hugo/releases/download/v0.88.1/hugo_0.88.1_Linux-64bit.deb
@@ -51,7 +48,6 @@
   - name: Install apt GUI applications
     become: true
     tags:
-      - deps
       - apt
       - gui
     apt:
@@ -74,7 +70,6 @@
 
   - name: Install pip packages
     tags:
-      - deps
       - pip
     pip:
       name:
@@ -97,7 +92,6 @@
       apply:
         become: true
         tags:
-          - deps
           - node
     vars:
       nodejs_generate_etc_profile: false
@@ -112,7 +106,6 @@
 
   - name: Install fzf
     tags:
-      - deps
       - fzf
     vars:
       clone_path: "{{ ansible_env.HOME }}/src/fzf"
@@ -131,7 +124,6 @@
   - name: Build neovim from source
     become: true
     tags:
-      - deps
       - neovim
     vars:
       clone_path: "{{ ansible_env.HOME }}/src/neovim"
@@ -172,7 +164,6 @@
 
   - name: Initialize git submodules
     tags:
-      - deps
       - submodules
     command: git submodule update --init --recursive --jobs 4
 
@@ -198,7 +189,6 @@
   - name: Ensure $HOME/.local/share/fonts exists
     tags:
       - fonts
-      - deps
     file:
       path: "{{ ansible_env.HOME }}/.local/share/fonts"
       state: directory
@@ -206,7 +196,6 @@
   - name: Install Sauce Code Pro
     tags:
       - fonts
-      - deps
     get_url:
       url: https://github.com/ryanoasis/nerd-fonts/blob/ab6fa3c562c552750dce08e638f1213d67b5b05c/patched-fonts/SourceCodePro/Medium/complete/Sauce%20Code%20Pro%20Medium%20Nerd%20Font%20Complete.ttf?raw=true
       dest: "{{ ansible_env.HOME }}/.local/share/fonts/Sauce Code Pro Medium Nerd Font Complete.ttf"
@@ -220,7 +209,6 @@
   - name: Install alacritty
     tags:
       - alacritty
-      - deps
     become: true
     block:
       - name: Add apt repository
@@ -228,7 +216,7 @@
           repo: ppa:aslatter/ppa
           state: present
 
-      - name: Install apt
+      - name: Install alacrity
         apt:
           name: alacritty
           state: present
@@ -254,7 +242,6 @@
   - name: Install efm-langserver
     tags:
       - efm-langserver
-      - deps
     unarchive:
       src: https://github.com/mattn/efm-langserver/releases/download/v0.0.37/efm-langserver_v0.0.37_linux_amd64.tar.gz
       dest: "{{ ansible_env.HOME }}/.local/bin"
