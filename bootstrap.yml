@@ -264,6 +264,37 @@
       - fonts
     command: fc-cache -f
 
+  - name: Install libxft-bgra to render emojis in st
+    tags:
+      - suckless
+      - libxft-bgra
+    vars:
+      clone_path: "{{ ansible_env.HOME }}/src/libxft-bgra"
+    block:
+      - name: (libxft-bgra) Install dependencies
+        apt:
+          name:
+            - xutils-dev
+          state: present
+
+      - name: (libxft-bgra) Clone libXft-bgra directory
+        git:
+          repo: https://github.com/uditkarode/libxft-bgra
+          dest: "{{ clone_path }}"
+          clone: true
+          version: 072cd202c0f4f757b32deac531586bc0429c8401
+
+      - name: (libxft-bgra) Execute autogen.sh script
+        command: sh autogen.sh --sysconfdir=/etc --prefix=/usr --mandir=/usr/share/man
+        args:
+          chdir: "{{ clone_path }}"
+
+      - name: (libxft-bgra) Install
+        become: true
+        community.general.make:
+          target: install
+          chdir: "{{ clone_path }}"
+
   - name: Build suckless tools
     tags:
       - suckless
