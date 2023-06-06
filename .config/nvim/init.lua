@@ -95,8 +95,7 @@ vim.cmd("packadd! fzf-lua")
 require("plugins.config.fzf_lua")
 
 -- lsp
-vim.cmd("packadd! coc.nvim")
-require("plugins.config.coc")
+require("plugins.config.lsp")
 
 -- session management
 vim.cmd("packadd! vim-obsession")
@@ -161,6 +160,9 @@ vim.o.linebreak = true
 vim.o.showtabline = 2
 vim.o.sidescroll = 1
 vim.o.sidescrolloff = 1
+vim.opt.completeopt = { "menuone", "noselect", "noinsert" }
+vim.opt.shortmess:append("c")
+vim.o.pumheight = 10
 
 -- colorscheme
 vim.o.termguicolors = true

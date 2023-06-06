@@ -1,3 +1,4 @@
 ---
 efm_langserver_version: "0.0.53"
+lua_language_server_version: "3.7.0"
 stylua_version: "0.13.1"

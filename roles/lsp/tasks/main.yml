@@ -12,6 +12,19 @@
     state: present
     executable: pip3
 
+- name: Install LSP with npm
+  loop:
+    - prettier
+    - "@fsouza/prettierd"
+    - typescript
+    - typescript-language-server
+    - vscode-langservers-extracted
+    - "@astrojs/language-server"
+  community.general.npm:
+    name: "{{ item }}"
+    global: true
+    state: present
+
 - name: Install linters and formatters with npm
   loop:
     - eslint
@@ -28,4 +41,16 @@
     src: "https://github.com/JohnnyMorganz/StyLua/releases/download/v{{ stylua_version }}/stylua-{{ 'macos' if ansible_facts['os_family'] == 'Darwin' else 'linux' }}.zip"
     dest: "{{ ansible_env.HOME }}/.local/bin"
     mode: "u+x"
+    remote_src: true
+
+- name: Create directory for LuaLS files
+  file:
+    path: "~/.local/LuaLS"
+    state: directory
+    mode: 0755
+
+- name: Install lua-language-server
+  unarchive:
+    src: "https://github.com/LuaLS/lua-language-server/releases/download/{{ lua_language_server_version }}/lua-language-server-{{ lua_language_server_version }}-linux-x64.tar.gz"
+    dest: "{{ ansible_env.HOME }}/.local/LuaLS"
     remote_src: true
