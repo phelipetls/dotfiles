@@ -16,6 +16,22 @@ tools:
       - '%f:%l:%c: %tarning: %m'
       - '%f:%l:%c: %tote: %m'
 
+  prettierd: &prettierd
+    format-command: 'prettierd "${INPUT}"'
+    format-stdin: true
+    require-marker: true
+    root-markers:
+      - .prettierrc
+      - .prettierrc.json
+      - .prettierrc.json5
+      - .prettierrc.yml
+      - .prettierrc.yaml
+      - .prettierrc.toml
+      - .prettierrc.js
+      - .prettierrc.cjs
+      - .prettierrc.config.js
+      - .prettierrc.config.cjs
+
   luacheck: &luacheck
     lint-command: 'luacheck --no-color ${INPUT}'
     lint-formats:
@@ -39,3 +55,15 @@ languages:
   lua:
     - <<: *luacheck
     - <<: *stylua
+
+  javascript:
+    - <<: *prettierd
+
+  typescript:
+    - <<: *prettierd
+
+  javascriptreact:
+    - <<: *prettierd
+
+  typescriptreact:
+    - <<: *prettierd

@@ -86,6 +86,9 @@ if [ -d "/opt/homebrew/bin" ]; then
   export PATH="$PATH:/opt/homebrew/bin"
 fi
 
+# Add LuaLS language PATH
+export PATH="$PATH:$HOME/.local/LuaLS/bin"
+
 function is_linux() {
   uname | grep -iq linux
 }
