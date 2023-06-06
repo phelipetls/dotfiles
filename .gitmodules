@@ -138,14 +138,6 @@
 	path = .config/nvim/pack/plugins/opt/vim-test
 	url = https://github.com/vim-test/vim-test
 	ignore = dirty
-[submodule "nvim-ufo"]
-	path = .config/nvim/pack/plugins/opt/nvim-ufo
-	url = https://github.com/kevinhwang91/nvim-ufo
-	ignore = dirty
-[submodule "promise-async"]
-	path = .config/nvim/pack/plugins/opt/promise-async
-	url = https://github.com/kevinhwang91/promise-async
-	ignore = dirty
 [submodule "statuscol.nvim"]
 	path = .config/nvim/pack/plugins/opt/statuscol.nvim
 	url = https://github.com/luukvbaal/statuscol.nvim
@@ -153,3 +145,46 @@
 [submodule ".config/nvim/pack/plugins/opt/oil.nvim"]
 	path = .config/nvim/pack/plugins/opt/oil.nvim
 	url = https://github.com/stevearc/oil.nvim
+[submodule "bamboo.nvim"]
+	path = .config/nvim/pack/plugins/opt/bamboo.nvim
+	url = https://github.com/ribru17/bamboo.nvim
+[submodule "nvim-lspconfig"]
+	path = .config/nvim/pack/plugins/opt/nvim-lspconfig
+	url = https://github.com/neovim/nvim-lspconfig
+	ignore = dirty
+[submodule "nvim-cmp"]
+	path = .config/nvim/pack/plugins/opt/nvim-cmp
+	url = https://github.com/hrsh7th/nvim-cmp
+	ignore = dirty
+[submodule "cmp-buffer"]
+	path = .config/nvim/pack/plugins/opt/cmp-buffer
+	url = https://github.com/hrsh7th/cmp-buffer
+	ignore = dirty
+[submodule "cmp-path"]
+	path = .config/nvim/pack/plugins/opt/cmp-path
+	url = https://github.com/hrsh7th/cmp-path
+	ignore = dirty
+[submodule "cmp-nvim-lsp"]
+	path = .config/nvim/pack/plugins/opt/cmp-nvim-lsp
+	url = https://github.com/hrsh7th/cmp-nvim-lsp
+	ignore = dirty
+[submodule "cmp-vsnip"]
+	path = .config/nvim/pack/plugins/opt/cmp-vsnip
+	url = https://github.com/hrsh7th/cmp-vsnip
+	ignore = dirty
+[submodule "vim-vsnip"]
+	path = .config/nvim/pack/plugins/opt/vim-vsnip
+	url = https://github.com/hrsh7th/vim-vsnip
+	ignore = dirty
+[submodule "fidget.nvim"]
+	path = .config/nvim/pack/plugins/opt/fidget.nvim
+	url = https://github.com/j-hui/fidget.nvim
+	ignore = dirty
+[submodule "nvim-colorizer.lua"]
+	path = .config/nvim/pack/plugins/opt/nvim-colorizer.lua
+	url = https://github.com/NvChad/nvim-colorizer.lua
+	ignore = dirty
+[submodule "nvim-colorizer.lua"]
+	path = .config/nvim/pack/plugins/opt/nvim-colorizer.lua
+	url = https://github.com/NvChad/nvim-colorizer.lua
+	ignore = dirty

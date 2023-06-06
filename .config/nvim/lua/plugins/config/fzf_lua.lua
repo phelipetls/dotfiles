@@ -18,3 +18,5 @@ vim.keymap.set("n", "<space>gs", "<cmd>FzfLua git_stash<CR>")
 
 vim.keymap.set("n", "<space>gr", "<cmd>FzfLua live_grep_native<CR>")
 vim.api.nvim_create_user_command("Rg", "FzfLua live_grep_native", {})
+
+vim.keymap.set("n", "<space>sy", "<cmd>FzfLua lsp_live_workspace_symbols<CR>")
