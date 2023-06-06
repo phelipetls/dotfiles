@@ -37,10 +37,6 @@ _G.get_tablabel = function(tabnr)
   return basename
 end
 
-local function grouped(s)
-  return "%(" .. s .. "%)"
-end
-
 M.get = function()
   local tabline = {}
 
@@ -57,7 +53,6 @@ M.get = function()
 
   table.insert(tabline, "%#TabLineFill#")
   table.insert(tabline, "%=")
-  table.insert(tabline, grouped("%{coc#status()} "))
 
   return table.concat(tabline, "")
 end
