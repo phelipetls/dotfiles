@@ -205,3 +205,7 @@
 	path = .config/nvim/pack/plugins/opt/nvim-colorizer.lua
 	url = https://github.com/NvChad/nvim-colorizer.lua
 	ignore = dirty
+[submodule "nvim-colorizer.lua"]
+	path = .config/nvim/pack/plugins/opt/nvim-colorizer.lua
+	url = https://github.com/NvChad/nvim-colorizer.lua
+	ignore = dirty
