@@ -62,6 +62,21 @@ local fidget = require("fidget")
 fidget.setup()
 
 -- }}}
+-- {{{ colorizer
+
+vim.cmd("packadd! nvim-colorizer.lua")
+require("colorizer").setup({
+  user_default_options = {
+    RGB = true,
+    RRGGBB = true,
+    rgb_fn = true,
+    hsl_fn = true,
+    names = false,
+    tailwind = "lsp",
+  },
+})
+
+-- }}}
 -- {{{ lspconfig
 
 vim.cmd("packadd! nvim-lspconfig")
