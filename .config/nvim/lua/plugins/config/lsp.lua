@@ -192,12 +192,20 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end
 
     if client.server_capabilities.documentFormattingProvider then
-      local function format()
+      local function format(options)
+        local default_filter = function(c)
+          return c.name ~= "tsserver"
+        end
+
         vim.lsp.buf.format({
           async = false,
           timeout_ms = 500,
-          filter = function(_client)
-            return _client.name ~= "tsserver"
+          filter = function(c)
+            if options and options.filter then
+              return default_filter(c) and options.filter(c)
+            end
+
+            return default_filter(c)
           end,
         })
       end
@@ -220,7 +228,14 @@ vim.api.nvim_create_autocmd("LspAttach", {
         "BufWritePre",
         vim.tbl_extend("force", opts, {
           group = format_on_save_autocmds,
-          command = "Fmt",
+          callback = function()
+            format({
+              filter = function(c)
+                return c.name ~= "jsonls"
+              end,
+            })
+          end,
+          desc = "Format buffer on save using LSP",
         })
       )
     end
