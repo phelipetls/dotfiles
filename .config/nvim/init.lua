@@ -111,10 +111,7 @@ require("plugins.config.treesitter")
 -- json
 vim.cmd("packadd! jsonpath.nvim")
 require("jsonpath").setup()
-vim.cmd("packadd! vim-jqplay")
-vim.g.jqplay = {
-  mods = "vertical",
-}
+require("jq").setup()
 
 -- testing
 vim.cmd("packadd! vim-test")
