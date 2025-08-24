@@ -99,13 +99,6 @@ vim.g.obsession_no_bufenter = 1
 vim.cmd("packadd! vim-slime")
 require("plugins.config.slime")
 
--- json
-vim.cmd("packadd! jsonpath.nvim")
-vim.cmd("packadd! vim-jqplay")
-vim.g.jqplay = {
-  mods = "vertical",
-}
-
 -- web development
 vim.cmd("packadd! vim-hugo")
 
@@ -114,6 +107,14 @@ vim.cmd("packadd! nvim-treesitter")
 vim.cmd("packadd! nvim-ts-context-commentstring")
 vim.cmd("packadd! nvim-treesitter-textobjects")
 require("plugins.config.treesitter")
+
+-- json
+vim.cmd("packadd! jsonpath.nvim")
+require("jsonpath").setup()
+vim.cmd("packadd! vim-jqplay")
+vim.g.jqplay = {
+  mods = "vertical",
+}
 
 -- testing
 vim.cmd("packadd! vim-test")
