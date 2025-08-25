@@ -98,10 +98,6 @@
 	path = .config/nvim/pack/plugins/opt/vim-fugitive-blame-ext
 	url = https://github.com/tommcdo/vim-fugitive-blame-ext
 	ignore = dirty
-[submodule "vim-jqplay"]
-	path = .config/nvim/pack/plugins/opt/vim-jqplay
-	url = https://github.com/phelipetls/vim-jqplay
-	ignore = dirty
 [submodule "plenary.nvim"]
 	path = .config/nvim/pack/plugins/opt/plenary.nvim
 	url = https://github.com/nvim-lua/plenary.nvim
