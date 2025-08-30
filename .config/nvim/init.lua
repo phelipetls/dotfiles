@@ -86,7 +86,7 @@ require("oil").setup({
     ["-"] = { "actions.parent", mode = "n" },
     ["gx"] = "actions.open_external",
     ["g."] = { "actions.toggle_hidden", mode = "n" },
-  }
+  },
 })
 vim.keymap.set("n", "-", "<cmd>Oil<CR>", { desc = "Open parent directory" })
 
@@ -166,7 +166,7 @@ vim.o.pumheight = 10
 
 -- colorscheme
 vim.o.termguicolors = true
-vim.cmd.colorscheme('unokai')
+vim.cmd.colorscheme("unokai")
 
 -- clipboard
 if vim.fn.has("wsl") == 1 then
@@ -257,7 +257,7 @@ vim.opt.diffopt = {
   "indent-heuristic",
   "internal",
   "algorithm:patience",
-  "linematch:60"
+  "linematch:60",
 }
 
 -- visually show special characters
