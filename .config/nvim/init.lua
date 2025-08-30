@@ -80,6 +80,13 @@ vim.g.twiggy_show_full_ui = 0
 vim.cmd("packadd! oil.nvim")
 require("oil").setup({
   show_hidden = true,
+  use_default_keymaps = false,
+  keymaps = {
+    ["<CR>"] = "actions.select",
+    ["-"] = { "actions.parent", mode = "n" },
+    ["gx"] = "actions.open_external",
+    ["g."] = { "actions.toggle_hidden", mode = "n" },
+  }
 })
 vim.keymap.set("n", "-", "<cmd>Oil<CR>", { desc = "Open parent directory" })
 
