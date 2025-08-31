@@ -51,6 +51,6 @@
 
 - name: Install lua-language-server
   unarchive:
-    src: "https://github.com/LuaLS/lua-language-server/releases/download/{{ lua_language_server_version }}/lua-language-server-{{ lua_language_server_version }}-linux-x64.tar.gz"
+    src: "https://github.com/LuaLS/lua-language-server/releases/download/{{ lua_language_server_version }}/lua-language-server-{{ lua_language_server_version }}-{{ 'darwin-arm64' if ansible_facts['os_family'] == 'Darwin' else 'linux-x64'}}.tar.gz"
     dest: "{{ ansible_env.HOME }}/.local/LuaLS"
     remote_src: true
