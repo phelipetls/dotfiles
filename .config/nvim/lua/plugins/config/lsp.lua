@@ -217,7 +217,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     if client.server_capabilities.documentFormattingProvider then
       local function format(options)
         local default_filter = function(c)
-          return c.name ~= "tsserver"
+          return c.name ~= "ts_ls"
         end
 
         vim.lsp.buf.format({
