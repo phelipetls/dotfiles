@@ -28,6 +28,7 @@ tools:
       - .prettierrc.yaml
       - .prettierrc.toml
       - .prettierrc.js
+      - .prettierrc.mjs
       - .prettierrc.cjs
       - .prettierrc.config.js
       - .prettierrc.config.cjs
