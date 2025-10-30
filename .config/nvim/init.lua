@@ -166,7 +166,7 @@ vim.o.pumheight = 10
 
 -- colorscheme
 vim.o.termguicolors = true
-vim.cmd.colorscheme("unokai")
+vim.cmd.colorscheme("default")
 
 -- clipboard
 if vim.fn.has("wsl") == 1 then
