@@ -169,18 +169,8 @@ vim.lsp.config("lua_ls", {
 })
 
 vim.lsp.enable("eslint")
-local base_on_attach = vim.lsp.config.eslint.on_attach
 vim.lsp.config("eslint", {
-  on_attach = function(client, bufnr)
-    if not base_on_attach then
-      return
-    end
-    base_on_attach(client, bufnr)
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      buffer = bufnr,
-      command = "LspEslintFixAll",
-    })
-  end,
+  capabilities = cmp_capabilities,
 })
 
 vim.lsp.enable("efm")
