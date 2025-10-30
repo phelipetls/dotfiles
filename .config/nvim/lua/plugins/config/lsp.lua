@@ -87,28 +87,25 @@ vim.diagnostic.config({
   virtual_text = true,
 })
 
-local function organize_imports()
-  local params = {
-    command = "_typescript.organizeImports",
-    arguments = { vim.api.nvim_buf_get_name(0) },
-    title = "",
-  }
-  vim.lsp.buf.execute_command(params)
-end
-
 vim.lsp.enable("ts_ls")
+local tsls_default_on_attach = vim.lsp.config.ts_ls.on_attach
 vim.lsp.config("ts_ls", {
-  on_attach = function(_, bufnr)
-    vim.keymap.set("n", "<M-S-O>", "<cmd>OrganizeImports<CR>", {
+  on_attach = function(client, bufnr)
+    if tsls_default_on_attach then
+      tsls_default_on_attach(client, bufnr)
+    end
+
+    vim.keymap.set("n", "<M-S-O>", function()
+      vim.lsp.buf.code_action({
+        only = {
+          "source.organizeImports",
+        },
+        apply = true,
+      })
+    end, {
       buffer = bufnr,
     })
   end,
-  commands = {
-    OrganizeImports = {
-      organize_imports,
-      description = "Organize imports",
-    },
-  },
   capabilities = cmp_capabilities,
 })
 
