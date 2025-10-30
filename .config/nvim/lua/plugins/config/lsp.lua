@@ -208,7 +208,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
     local opts = { buffer = ev.buf }
 
-    if client.server_capabilities.documentFormattingProvider then
+    if client:supports_method("textDocument/formatting") then
       local function format(options)
         local default_filter = function(c)
           return c.name ~= "ts_ls" and c.name ~= "cssls" and c.name ~= "html"
@@ -241,16 +241,18 @@ vim.api.nvim_create_autocmd("LspAttach", {
         })
       )
 
-      vim.api.nvim_create_autocmd(
-        "BufWritePre",
-        vim.tbl_extend("force", opts, {
-          group = format_on_save_autocmds,
-          command = "Fmt",
-        })
-      )
+      if not client:supports_method("textDocument/willSaveWaitUntil") then
+        vim.api.nvim_create_autocmd(
+          "BufWritePre",
+          vim.tbl_extend("force", opts, {
+            group = format_on_save_autocmds,
+            command = "Fmt",
+          })
+        )
+      end
     end
 
-    if client.server_capabilities.definitionProvider then
+    if client:supports_method("textDocument/definition") then
       vim.keymap.set("n", "[d", vim.lsp.buf.definition, opts)
 
       local function split_definition()
@@ -262,20 +264,20 @@ vim.api.nvim_create_autocmd("LspAttach", {
       vim.keymap.set("n", "<C-w><C-d>", split_definition, opts)
     end
 
-    if client.server_capabilities.typeDefinitionProvider then
+    if client:supports_method("textDocument/typeDefinitionProvider") then
       vim.keymap.set("n", "[t", vim.lsp.buf.type_definition, opts)
     end
 
-    if client.server_capabilities.renameProvider then
+    if client:supports_method("textDocument/rename") then
       vim.keymap.set("n", "<F2>", vim.lsp.buf.rename, opts)
     end
 
-    if client.server_capabilities.codeActionProvider then
+    if client:supports_method("textDocument/codeAction") then
       vim.keymap.set({ "n", "v" }, "<M-CR>", vim.lsp.buf.code_action, opts)
       vim.keymap.set({ "n", "v" }, "<space>a", vim.lsp.buf.code_action, opts)
     end
 
-    if client.server_capabilities.referencesProvider then
+    if client:supports_method("textDocument/references") then
       vim.api.nvim_create_user_command("References", vim.lsp.buf.references, {
         nargs = 0,
         desc = "Populate quickfix list with references of symbol under the cursor",
