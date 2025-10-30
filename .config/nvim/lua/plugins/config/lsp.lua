@@ -95,14 +95,18 @@ vim.lsp.config("ts_ls", {
       tsls_default_on_attach(client, bufnr)
     end
 
-    vim.keymap.set("n", "<M-S-O>", function()
+    vim.keymap.set("n", "<M-S-S>", "<cmd>LspTypescriptSourceAction<CR>", {
+      buffer = bufnr,
+    })
+
+    vim.api.nvim_buf_create_user_command(bufnr, "LspOrganizeImports", function()
       vim.lsp.buf.code_action({
-        only = {
-          "source.organizeImports",
-        },
+        only = { "source.organizeImports" },
         apply = true,
       })
-    end, {
+    end, {})
+
+    vim.keymap.set("n", "<M-S-O>", "<cmd>LspOrganizeImports<CR>", {
       buffer = bufnr,
     })
   end,
