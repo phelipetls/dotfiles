@@ -287,10 +287,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 vim.keymap.set("n", "[g", function()
-  vim.diagnostic.jump({ count = 1, float = true })
+  vim.diagnostic.jump({ count = -1, float = true })
 end)
 vim.keymap.set("n", "]g", function()
-  vim.diagnostic.jump({ count = -1, float = true })
+  vim.diagnostic.jump({ count = 1, float = true })
 end)
 vim.keymap.set("n", "<C-Space>", vim.diagnostic.open_float)
 
