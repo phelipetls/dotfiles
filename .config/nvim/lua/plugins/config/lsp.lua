@@ -102,7 +102,6 @@ vim.lsp.config("ts_ls", {
     vim.api.nvim_buf_create_user_command(bufnr, "LspOrganizeImports", function()
       vim.lsp.buf.code_action({
         only = { "source.organizeImports" },
-        apply = true,
       })
     end, {})
 
