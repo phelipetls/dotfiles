@@ -38,6 +38,7 @@
       - python3-pip
       - xclip
       - moreutils
+      - gawk
     state: present
   when: ansible_distribution == "Fedora"
 

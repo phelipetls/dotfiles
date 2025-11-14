@@ -11,6 +11,7 @@
   ansible.builtin.apt:
     name:
       - keychain
+  when: ansible_distribution == "Ubuntu"
 
 - name: Install wslu in Ubuntu
   become: true
@@ -18,6 +19,29 @@
     name:
       - wslu
     update_cache: true
+  when: ansible_distribution == "Ubuntu"
+
+- name: Check if wslu is installed
+  ansible.builtin.stat:
+    path: /usr/local/bin/wslgsu
+  register: wslu_build
+  when: ansible_distribution == "Fedora"
+
+- name: Build wslu in Linux
+  community.general.make:
+    chdir: deps/wslu
+  environment: 
+    PREFIX: /usr/local
+  when: ansible_distribution == "Fedora"
+
+- name: Install wslu in Linux
+  become: true
+  community.general.make:
+    chdir: deps/wslu
+    target: install
+  environment: 
+    PREFIX: /usr/local
+  when: ansible_distribution == "Fedora"
 
 - name: Add win32yank wrapper executable script into PATH
   copy:
