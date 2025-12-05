@@ -17,11 +17,6 @@
     key: "/org/gnome/desktop/peripherals/touchpad/tap-to-click"
     value: "true"
 
-- name: Show battery percentage
-  community.general.dconf:
-    key: "/org/gnome/desktop/interface/show-battery-percentage"
-    value: "true"
-
 - name: Show apps in current workspace only on Alt+Tab
   community.general.dconf:
     key: "/org/gnome/shell/app-switcher/current-workspace-only"
