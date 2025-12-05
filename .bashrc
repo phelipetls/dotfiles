@@ -102,5 +102,7 @@ _fzf_compgen_dir() {
 
 _fzf_setup_completion path npm
 
+source ~/.profile
+
 # configure zoxide
 eval "$(zoxide init bash)"
