@@ -2,6 +2,4 @@
 
 set -e
 
-PYTHON_USER_BIN=$(python3 -m site --user-base)/bin
-
-ANSIBLE_ALLOW_BROKEN_CONDITIONALS=1 PATH="$PATH:$PYTHON_USER_BIN" ansible-playbook bootstrap.yml
+ANSIBLE_ALLOW_BROKEN_CONDITIONALS=1 ansible-playbook -K bootstrap.yml

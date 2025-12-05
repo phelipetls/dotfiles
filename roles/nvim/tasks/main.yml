@@ -8,11 +8,10 @@
   when: ansible_distribution == "MacOSX"
 
 - name: Install pynvim
-  ansible.builtin.pip:
-    name:
-      - pynvim
+  community.general.pipx:
+    name: pynvim
     state: present
-    executable: pip3
+    executable: pipx
 
 - name: Generate :help pages
   shell: nvim --headless -c 'helptags ALL' -c quit

@@ -6,6 +6,12 @@ My configuration files for Linux and macOS.
 | ------ | ------ | ----- |
 | `sudo apt install -y git` | `sudo dnf install -y git` | `xcode-select --install` |
 
+# Install pipx
+
+| Ubuntu | Fedora | macOS |
+| ------ | ------ | ----- |
+| `sudo apt install pipx` | `sudo dnf install pipx` | `brew install pipx` |
+
 # Clone the repository
 
 ```sh

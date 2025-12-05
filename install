@@ -1,9 +1,5 @@
 #!/bin/bash
 
 set -e
-
-pip3 install ansible
-
-PYTHON_USER_BIN=$(python3 -m site --user-base)/bin
-
-PATH="$PATH:$PYTHON_USER_BIN" ansible-galaxy install -r requirements.yml
+pipx install --include-deps ansible
+ansible-galaxy install -r requirements.yml

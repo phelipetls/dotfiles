@@ -6,11 +6,14 @@
   import_tasks: shellcheck.yml
 
 - name: Install linters and formatters with pip
-  ansible.builtin.pip:
-    name:
+  vars:
+    pipx_packages:
       - yamllint
+  community.general.pipx:
+    name: "{{ item }}"
     state: present
-    executable: pip3
+    executable: pipx
+  with_items: "{{ pipx_packages }}"
 
 - name: Install LSP with npm
   loop:

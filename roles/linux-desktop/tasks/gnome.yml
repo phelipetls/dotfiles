@@ -1,8 +1,8 @@
 ---
 - name: Install psutil
-  pip:
-    name:
-      - psutil
+  become: true
+  ansible.builtin.dnf:
+    name: python3-psutil
     state: present
 
 - name: Install dconf in Ubuntu
